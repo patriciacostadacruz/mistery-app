@@ -2,7 +2,9 @@
 
 ![](/public/images/kenia.png)
 
-¡Bienvenidos equipo Nakuru! Sabíamos que no nos ibáis a decepcionar. Habéis encontrado el repositorio, y eso nos da algo de esperanza, pero esto es solo el primer paso. Aún no sabéis de qué es la aplicación, pero aún no confiamos suficientemente en vosotros como para daros esas información. *Si esta parte sale bien, quizá...*
+¡Bienvenidos equipo Nakuru! Sabíamos que no nos ibáis a decepcionar. Habéis encontrado el repositorio, y eso nos da algo de esperanza, pero esto es solo el primer paso. Aún no sabéis de qué es la aplicación, pero todavía no confiamos suficientemente en vosotros como para daros esa información. *Si esta parte sale bien, quizá...*
+
+---
 
 ## Misión actual 🔓
 
@@ -19,9 +21,18 @@ Ahora:
 - Una vez hecho, debéis ejecutar `npm install`
 - Probad que todo funciona correctamente ejecutando `npm run dev`
 
-> Si hay algún error en el repositorio, acudid al punto de control 📍
-
 ⚠️ El repositorio tiene todos los paquetes que vais a necesitar ya instalados.
+
+Además, se ha creado una base de datos en Mongo Atlas para vosotros, para que **todos veais la misma base de datos**, en vez de correr Mongo en local. Si os fijáis en el archivo .env, la dirección es diferente. No tenéis que tocarla. 
+
+Para visualizar la base de datos desde Mongo Compass, todos tenéis que clicar en *Connect > New connection*, y añadir esta dirección:
+
+```bash
+mongodb+srv://admin:admin@nakurudb.mxestn8.mongodb.net/nakuruDB
+```
+Veréis que por defecto se crean dos colecciones: admin y local. Es correcto, no hace falta hacer nada con ellas.
+
+> Si hay algún error en el repositorio, acudid al punto de control 📍
 
 ---
 
@@ -31,7 +42,7 @@ Lo primero que tenéis que hacer son las rutas de autenticación:
 
 ```bash
 GET /auth/signup
-POST auth/signup
+POST /auth/signup
 GET /auth/login
 POST /auth/login
 GET /auth/logout
@@ -41,5 +52,7 @@ Podéis repartiros las tareas como vosotros consideréis, y hacer las vistas com
 
 La rama `dev` ya existe, y todos podéis ir a ella haciendo `git checkout dev`. Os recomendamos que repaséis la chuleta de git colaborativo y que, en las primeras iteraciones, os ayudéis los unos a los otros.
 
-Antes de continuar, solo hay un problema, y es que **el modelo de User se ha perdido**, por lo que no podemos avanzar. La única pista que tenemos es la siguiente:
+Antes de continuar, solo hay un problema, y es que **el modelo de User se ha perdido**, por lo que no podemos avanzar. Fue visto por última vez [cerca de aquí](https://www.alebausa.com/nakuru-user)...
+
+Por cierto, ahora no recuerdo... ¿cómo se llamaban esas funciones que tienen acceso al objecto request, response y pueden llamar a la siguiente función de la aplicación?
 
