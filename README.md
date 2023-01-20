@@ -30,7 +30,7 @@ Para visualizar la base de datos desde Mongo Compass, todos tenéis que clicar e
 ```bash
 mongodb+srv://admin:admin@nakurudb.mxestn8.mongodb.net/nakuruDB
 ```
-Veréis que por defecto se crean dos colecciones: admin y local. Es correcto, no hace falta hacer nada con ellas.
+Veréis que por defecto se crean dos bases de datos: admin y local. Es correcto, no hace falta hacer nada con ellas, cuando arranquéis vuestro repositorio se creará otra que se llamará `nakuruDB` y ahí tendréis todas vuestras colecciones.
 
 > Si hay algún error en el repositorio, acudid al punto de control 📍
 

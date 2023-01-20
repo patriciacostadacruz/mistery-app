@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 require('dotenv').config();
 require('./db');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 
 // router files
 const indexRouter = require('./routes/index');
@@ -20,6 +22,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// For deployment
+app.set('trust proxy', 1);
+app.use(
+  session({
+    name: 'nakuru-cookie',
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: false,
+    cookie: {
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+      secure: process.env.NODE_ENV === 'production',
+      httpOnly: true,
+      maxAge: 2592000000 // 30 days in milliseconds
+    },
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URL
+    })
+  })
+)
 
 // router endpoint setting
 app.use('/', indexRouter);
