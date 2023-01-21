@@ -20,7 +20,7 @@ const seed = [
     },
     {
         title: "Catan",
-        player: 6,
+        players: 6,
         releaseYear: "1995",
         avgTime: 60,
         minAge: 10,
@@ -59,7 +59,7 @@ const seed = [
     },
     {
         title: "Poker",
-        player: 5,
+        players: 5,
         releaseYear: "1937",
         avgTime: 60,
         minAge: 15,
@@ -69,7 +69,7 @@ const seed = [
     },
     {
         title: "Parchis",
-        player: 4,
+        players: 4,
         releaseYear: "1950",
         avgTime: 60,
         minAge: 10,
@@ -88,7 +88,7 @@ const seed = [
     },
     {
         title: "Scrabble",
-        player: 4,
+        players: 4,
         releaseYear: "1938",
         avgTime: 60,
         minAge: 10,
