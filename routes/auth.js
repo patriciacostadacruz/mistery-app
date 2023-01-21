@@ -1,3 +1,4 @@
+// Const requires added by Miki previously
 router.post('/login', async function (req, res, next) {
     const { email, password } = req.body;
     if (!email || !password) {
@@ -10,6 +11,10 @@ router.post('/login', async function (req, res, next) {
         res.render('auth/login', { error: `There are no users by ${email}` });
         return;
       } else {
+        const userForCookie = {
+        username: userInDB.username,
+        email: userInDB.email
+        }
         const passwordMatch = await bcrypt.compare(password, userInDB.hashedPassword);
         if (passwordMatch) {
           req.session.currentUser = userInDB;
