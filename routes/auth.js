@@ -15,3 +15,6 @@ router.get('/signup', function (req, res, next) {
 router.get('/login', function (req, res, next) {
     res.render('auth/login');
   });
+
+
+module.exports = router;
