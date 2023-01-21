@@ -1,0 +1,20 @@
+<h2>Edit your information</h2>
+
+<form method="POST" action="/profile/edit/{{user.id}}">
+  <label>Username:</label>
+  <input type="text" name="username" value="{{user.username}}" required="true" />
+  <label>First Name:</label>
+  <input type="text" name="firstName" value="{{user.firstName}}" required="true" />
+  <label>Last Name:</label>
+  <input type="text" name="lastName" value="{{user.lastName}}" required="true" />
+  <label>Phone</label>
+  <input type="number" name="phone" value="{{user.phone}}" />
+  <label>City</label>
+  <input type="text" name="city" value="{{user.city}}"/>
+  <label>Age</label>
+  <input type="number" name="age" value="{{user.age}}" />
+  <button type="submit">Update</button>
+  {{#if error}}
+    <p style="color: red">{{error}}</p>
+  {{/if}}
+</form>

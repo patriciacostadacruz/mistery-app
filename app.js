@@ -11,6 +11,7 @@ const MongoStore = require('connect-mongo');
 // router files
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
+const userRouter = require("./routes/users");
 
 const app = express();
 
@@ -45,6 +46,7 @@ app.use(
 
 // router endpoint setting
 app.use('/', indexRouter);
+app.use("/", userRouter);
 app.use("/auth", authRouter);
 
 // catch 404 and forward to error handler
