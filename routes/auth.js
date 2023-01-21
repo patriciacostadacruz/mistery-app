@@ -22,7 +22,7 @@ router.get('/logout', (req, res, next) => {
      if (err) {
        next(err)
      } else {
-       res.clearCookie('show-app')
+       res.clearCookie('nakuru')
        res.redirect('/auth/login');
      }
    });
