@@ -26,7 +26,7 @@ const seed = [
         minAge: 10,
         image: "https://devirinvestments.s3.eu-west-1.amazonaws.com/img/catalog/product/8436017228588-1200-face3d.jpg",
         description: "Catan, previously known as The Settlers of Catan or simply Settlers, is a multiplayer board game designed by Klaus Teuber. It was first published in 1995 in Germany by Franckh-Kosmos Verlag (Kosmos) as Die Siedler von Catan.",
-        owner: "63cbc48cef01ad5a7d4ce434f"
+        owner: "63cbc48cef01ad5a7d4ce4ae"
     },
     {
         title: "La Oca", 
@@ -36,7 +36,7 @@ const seed = [
         minAge: 4, // edad mínima para jugar
         image: "https://www.entreletras.eu/wp-content/uploads/2022/Temas/Juego-de-Karpa-ca.-1950.jpg",
         description: "La Oca is a board game for two or more players. Each player rolls a dice and advances his token (according to the number obtained) on a board in the shape of a snail with 63 squares (or more), with drawings. Depending on the square in which it falls, it is possible to advance or, on the contrary, to go backwards, and in some of them a punishment or a prize is indicated. On his turn, each player rolls 1 or 2 dice (depending on the different versions) that indicate the number of squares he must advance. The first player to reach square 63, 'the garden of the goose', wins the game.",
-        owner: "63cbc63f17a8265752f16f90"
+        owner: "63cbc48cef01ad5a7d4ce4ae"
     },
     {
         title: "Monopoly",
@@ -65,7 +65,7 @@ const seed = [
         minAge: 15,
         image: "https://play-lh.googleusercontent.com/8FbbqSFnBmQOejVmkMU04HBGhgiesuuJI7VKSH5wHIAVyK2tSzzzagAawWm-PzpggeX7",
         description: "Poker is a family of comparing card games in which players wager over which hand is best according to that specific game's rules. It is played worldwide, however in some places the rules may vary.",
-        owner: "63cbc48cef01ad5a7d4ce4574f"
+        owner: "63cbc48cef01ad5a7d4ce4ae"
     },
     {
         title: "Parchis",
@@ -75,7 +75,7 @@ const seed = [
         minAge: 10,
         image: "https://www.65ymas.com/uploads/s1/15/68/71/el-parchis-tambien-se-juega-en-app-sabes-como.jpeg",
         description: "Parchís is a Spanish board game of the Cross and Circle family.[1] It is an adaptation of the Indian game Pachisi. Parchís was a very popular game in Spain at one point as well as in Europe and north Morocco - specifically Tangiers and Tetouan, and it is still popular especially among adults and seniors",
-        owner: "63cbc48cef01ad5a7d4ce4574f"
+        owner: "63cbc48cef01ad5a7d4ce4ae"
     },
     {
         title: "The Mind", 
@@ -94,7 +94,7 @@ const seed = [
         minAge: 10,
         image: "https://img.freepik.com/fotos-premium/scrabble-board-game-word-scrabble-mosaicos-letras-estante-mosaicos-tablero-juego_121826-714.jpg?w=2000",
         description: "Scrabble, board-and-tile game in which two to four players compete in forming words with lettered tiles on a 225-square board; words spelled out by letters on the tiles interlock like words in a crossword puzzle.",
-        owner: "63cbc48cef01ad5a7d4ce434f"
+        owner: "63cbc48cef01ad5a7d4ce4ae"
     }
 ]
 
@@ -114,6 +114,9 @@ mongoose
   .then(() => 
     Boardgame.create(seed)
   )
+  .then(() => {
+    mongoose.connection.close();
+  })
   .catch((err) => {
     console.error("Error connecting to mongo: ", err);
   });
