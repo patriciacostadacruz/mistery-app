@@ -2,7 +2,7 @@
 router.post('/login', async function (req, res, next) {
     const { email, password } = req.body;
     if (!email || !password) {
-      res.render('auth/login', { error: 'Introduce email and password to log in' });
+      res.render('auth/login', { error: 'Enter email and password to log in' });
       return;
     }
     try {
