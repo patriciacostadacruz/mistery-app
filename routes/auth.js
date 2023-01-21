@@ -4,6 +4,11 @@ const saltRounds = 10;
 const User = require("../models/Users");
 const isLoggedIn = require("../middleware");
 
+/* GET sign up view. */
+router.get('/signup', function (req, res, next) {
+    res.render('auth/signup');
+  });
+   
 /* POST route to add sign up data in DB */
 router.post("/signup", async (req, res, next) => {
   const { username, email, password } = req.body;
@@ -35,3 +40,25 @@ router.post("/signup", async (req, res, next) => {
       next(error);
   }
 });
+
+
+
+
+/* GET log in view. */
+router.get('/login', function (req, res, next) {
+    res.render('auth/login');
+  });
+
+/* GET logout */
+router.get('/logout', (req, res, next) => {
+   req.session.destroy((err) => {
+     if (err) {
+       next(err)
+     } else {
+       res.clearCookie('nakuru')
+       res.redirect('/auth/login');
+     }
+   });
+ });
+
+module.exports = router;
