@@ -4,11 +4,11 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
   firstName: {
     type: String,
-    required: [true, 'Please add a username'],
+    required: [true, 'Please add a username']
     },
   lastName: {
     type: String,
-    required: [true, 'Please add a username'],
+    required: [true, 'Please add a username']
     },
   phone: {
     type: Number
@@ -23,14 +23,14 @@ const userSchema = new Schema({
     type: String,
     required: [true, 'Please add a username'],
     unique: true,
-    trim: true,
+    trim: true
   },
   email: {
     type: String,
     required: [true, 'Please add a valid email'],
     unique: true,
     trim: true,
-    lowercase: true,
+    lowercase: true
   },
   hashedPassword: {
     type: String,
