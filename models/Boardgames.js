@@ -27,7 +27,8 @@ const BoardgameSchema = new Schema({
     type: String
   },
   _owner: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: "User"
   }
 },
   {
