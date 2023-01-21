@@ -4,6 +4,11 @@ const saltRounds = 10;
 const User = require("../models/Users");
 const isLoggedIn = require("../middleware");
 
+/* GET sign up view. */
+router.get('/signup', function (req, res, next) {
+    res.render('auth/signup');
+  });
+   
 /* POST route to add sign up data in DB */
 router.post("/signup", async (req, res, next) => {
   const { username, email, password } = req.body;
@@ -35,3 +40,53 @@ router.post("/signup", async (req, res, next) => {
       next(error);
   }
 });
+
+/* GET log in view. */
+router.get('/login', function (req, res, next) {
+    res.render('auth/login');
+  });
+
+// Const requires added by Miki previously
+router.post('/login', async function (req, res, next) {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      res.render('auth/login', { error: 'Enter email and password to log in' });
+      return;
+    }
+    try {
+      const userInDB = await User.findOne({ email: email });
+      if (!userInDB) {
+        res.render('auth/login', { error: `There are no users by ${email}` });
+        return;
+      } else {
+        const userForCookie = {
+        username: userInDB.username,
+        email: userInDB.email
+        }
+        const passwordMatch = await bcrypt.compare(password, userInDB.hashedPassword);
+        if (passwordMatch) {
+          req.session.currentUser = userInDB;
+          res.render('auth/profile', userInDB);
+        } else {
+          res.render('auth/login', { error: 'Unable to authenticate user' });
+          return;
+        }
+      }
+    } catch (error) {
+      next(error)
+    }
+  });
+
+/* GET logout */
+router.get('/logout', (req, res, next) => {
+  req.session.destroy((err) => {
+    if (err) {
+      next(err)
+    } else {
+      res.clearCookie('nakuru')
+      res.redirect('/auth/login');
+    }
+  });
+});
+
+module.exports = router;
