@@ -10,6 +10,7 @@ const MongoStore = require('connect-mongo');
 
 // router files
 const indexRouter = require('./routes/index');
+const authRouter = require('./routes/auth');
 
 const app = express();
 
