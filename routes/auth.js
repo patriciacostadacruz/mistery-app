@@ -11,8 +11,8 @@ router.get('/signup', function (req, res, next) {
    
 /* POST route to add sign up data in DB */
 router.post("/signup", async (req, res, next) => {
-  const { username, email, password } = req.body;
-  if (!username || !email || !password) {
+  const { firstName, lastName, phone, city, age, username, email, password } = req.body;
+  if (!firstName || !lastName || !username || !email || !password) {
     res.render("auth/signup", { error: "All fields are necessarey to sign up"});
     return;
   }
@@ -33,7 +33,7 @@ router.post("/signup", async (req, res, next) => {
     } else {
       const salt = await bcrypt.genSalt(saltRounds);
       const hashedPassword = await bcrypt.hash(password, salt);
-      const user = await User.create({ username, email, hashedPassword });
+      const user = await User.create({ firstName, lastName, phone, city, age, username, email, hashedPassword });
       res.render("profile", {user});
     }
   } catch(error) {
