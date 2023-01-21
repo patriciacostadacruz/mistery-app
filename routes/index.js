@@ -6,4 +6,10 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Nakuru team' });
 });
 
+/* profile route */
+router.get("/profile", (req, res, next) => {
+  const user = req.session.currentUser;
+  res.render("profile", {user});
+})
+
 module.exports = router;

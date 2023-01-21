@@ -16,10 +16,6 @@ router.post("/signup", async (req, res, next) => {
     res.render("auth/signup", { error: "All fields are necessarey to sign up"});
     return;
   }
-  const usernameInDB = await User.findOne({username});
-  if (usernameInDB) {
-    res.render("auth/signup", { error: `Username must be unique, ${username} is already in use.`});
-  }
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
   if (!regex.test(password)) {
     res.render("auth/signup", { error: "Password needs to contain at least 6 characters, one number and one lowercase and uppercase character."});
@@ -61,12 +57,13 @@ router.post('/login', async function (req, res, next) {
       } else {
         const userForCookie = {
         username: userInDB.username,
-        email: userInDB.email
+        email: userInDB.email,
+        _id: userInDB._id
         }
         const passwordMatch = await bcrypt.compare(password, userInDB.hashedPassword);
         if (passwordMatch) {
           req.session.currentUser = userInDB;
-          res.render('profile', userInDB);
+          res.render('profile', { user: userInDB });
         } else {
           res.render('auth/login', { error: 'Unable to authenticate user' });
           return;
