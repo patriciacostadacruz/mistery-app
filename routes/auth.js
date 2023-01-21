@@ -16,5 +16,16 @@ router.get('/login', function (req, res, next) {
     res.render('auth/login');
   });
 
+/* GET logout */
+router.get('/logout', (req, res, next) => {
+   req.session.destroy((err) => {
+     if (err) {
+       next(err)
+     } else {
+       res.clearCookie('show-app')
+       res.redirect('/auth/login');
+     }
+   });
+ });
 
 module.exports = router;
